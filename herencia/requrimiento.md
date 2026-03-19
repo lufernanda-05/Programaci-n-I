@@ -1,0 +1,1 @@
+Clase animal, clase felino y clase aves  con 2 atributos cada uno
