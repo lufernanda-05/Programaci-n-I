@@ -11,7 +11,7 @@ public class InterfazGrafica extends JFrame {
     private Cuenta cuenta1;
     private Cuenta cuenta2;
     private ProcesadorTransferencia procesador;
-    private JLabel lblCuenta1;
+    private JLabel lblCuenta1;// información de cuenta 1
     private JLabel lblCuenta2;
     private JPanel panelBotones;
 
@@ -25,7 +25,7 @@ public class InterfazGrafica extends JFrame {
 
         procesador = new ProcesadorTransferencia(new ServicioEmail());
 
-        // Configurar ventana
+        // Configuración ventana
         setTitle("Sistema de Gestión de Cuentas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -35,9 +35,9 @@ public class InterfazGrafica extends JFrame {
 
         // Panel principal con BorderLayout
         JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
+        // Margen y fondo
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panelPrincipal.setBackground(new Color(240, 240, 240));
-
         // NORTE: Título
         JLabel titulo = new JLabel("<< Elija la operación a realizar >>");
         titulo.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -51,12 +51,13 @@ public class InterfazGrafica extends JFrame {
         // SUR: Panel con botones
         panelBotones = crearPanelBotones();
         JScrollPane scrollBotones = new JScrollPane(panelBotones);
+        // Configuramos scroll
         scrollBotones.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollBotones.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         panelPrincipal.add(scrollBotones, BorderLayout.SOUTH);
 
         add(panelPrincipal);
-        setVisible(true);
+        setVisible(true);// visibilidad de la ventana
     }
 
     // cuentas
@@ -147,6 +148,7 @@ public class InterfazGrafica extends JFrame {
         lblCuenta2.setFont(new Font("Courier New", Font.PLAIN, 12));
         lblCuenta2.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         actualizarLabelCuenta2();
+        // con la función add agregamos el label al panel
         panelInfo.add(lblCuenta2);
 
         return panelInfo;
@@ -170,7 +172,7 @@ public class InterfazGrafica extends JFrame {
         lblCuenta2.setText(info);
     }
 
-    // ✅ Panel con botones (lado derecho, con scroll)
+    // ✅ Panel y botones para la ejecución de las operaciones
     private JPanel crearPanelBotones() {
         JPanel panel = new JPanel(new GridLayout(6, 1, 10, 10));
         panel.setBorder(BorderFactory.createTitledBorder("Operaciones"));
@@ -194,7 +196,7 @@ public class InterfazGrafica extends JFrame {
         btnRetirar.addActionListener(e -> operarRetirar());
         panel.add(btnRetirar);
 
-        // Botón para aplicar interés (solo para CuentaAhorros)
+        // Botón para aplicar interés
         JButton btnInteres = new JButton("Aplicar Interés (1%)");
         btnInteres.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         btnInteres.addActionListener(e -> operarInteres());
@@ -234,14 +236,14 @@ public class InterfazGrafica extends JFrame {
                 "Seleccionar Cuenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
                 opciones[0]);
 
-        if (seleccion == -1)
+        if (seleccion == -1)// cancelamos
             return;
-
+        // Solicitamos monto a depositar
         String montoStr = JOptionPane.showInputDialog(this, "Ingresa el monto a depositar:", "0.0");
         if (montoStr == null || montoStr.isEmpty())
             return;
 
-        try {
+        try {// convertimos el monto a numero decimal.
             double monto = Double.parseDouble(montoStr);
             if (monto <= 0) {
                 JOptionPane.showMessageDialog(this, "El monto debe ser positivo.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -250,7 +252,7 @@ public class InterfazGrafica extends JFrame {
 
             Cuenta cuenta = (seleccion == 0) ? cuenta1 : cuenta2;
             cuenta.depositar(monto);
-
+            // Mostramos resultado
             String resultado = String.format(
                     "Depósito exitoso\n\n" +
                             "Cuenta: %s\n" +
@@ -362,7 +364,7 @@ public class InterfazGrafica extends JFrame {
 
     // Operación de transferencia
     private void operarTransferir() {
-        String[] opciones = { "Cuenta 1 → Cuenta 2", "Cuenta 2 → Cuenta 1" };
+        String[] opciones = { "Cuenta 1 a Cuenta 2", "Cuenta 2 a Cuenta 1" };
         int seleccion = JOptionPane.showOptionDialog(this, "¿Cuál es la dirección de la transferencia?",
                 "Seleccionar Transferencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
                 opciones[0]);

@@ -1,6 +1,6 @@
 package Ejercicio_cuenta;
 
-import javax.swing.*;
+import javax.swing.*;//siempre debe ir para las interfaces graficas
 import java.awt.*;
 import java.awt.event.*;
 
