@@ -1,0 +1,7 @@
+2026-05-10 19:04:30.063652-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: Writing to sun.nio.ch.FileChannelImpl@28864e92 failed; length 8192 at 0 [2.4.240/2]"
+General error: "org.h2.mvstore.MVStoreException: Writing to sun.nio.ch.FileChannelImpl@28864e92 failed; length 8192 at 0 [2.4.240/2]" [50000-240]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:502)

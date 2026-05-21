@@ -1,0 +1,20 @@
+2026-05-07 08:47:09.205430-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DOCENTES" not found (this database is empty); SQL statement:
+insert into docentes (nombre, identificacion) values (?, ?) [42104-240]
+2026-05-07 08:50:21.745994-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Parametro "#1" no está fijado
+Parameter "#1" is not set; SQL statement:
+insert into docentes (nombre, identificacion) values (?, ?) [90012-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:203)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:129)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:213)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:172)
+	at co.vinni.gestion.OperacionesDocente.crear(OperacionesDocente.java:17)
+	at co.vinni.Main.main(Main.java:30)
